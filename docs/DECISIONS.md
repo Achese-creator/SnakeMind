@@ -54,3 +54,37 @@ Reason: support visualization while keeping training independent of
 a graphical desktop.
 
 A separate interactive viewer remains planned.
+
+## ADR-008: Common agent interface
+
+All agents implement a shared interface with:
+- `reset(seed=None)` for episode initialization.
+- `act(observation, info)` for action selection.
+
+Reason: allow different algorithms to operate through the same environment and evaluation pipeline.
+
+Learned agents must preserve learned parameters when resetting episode-specific state.
+
+## ADR-009: Hamiltonian-cycle baseline constraints
+
+The Hamiltonian agent uses a deterministic cycle covering every cell on supported even square boards of size 6 or greater.
+
+It is a planning baseline, not a learned reinforcement learning algorithm. Its current implementation assumes the standard initial Snake environment state.
+
+Reason: establish a deterministic survival and board-coverage reference point.
+
+## ADR-010: Shared evaluation protocol
+
+The initial baseline evaluation uses:
+- Board size: 10 × 10.
+- Maximum episode steps: 10,000.
+- Evaluation seeds: 100–109.
+- Identical environment rules and episode limits for both agents.
+
+Per-episode metrics include score, survival steps, episode return, final length, termination status and termination reason.
+
+Results are saved as CSV files.
+
+Reason: make baseline experiments reproducible and enable future comparisons.
+
+The initial ten-seed experiment is a pilot. Final research comparisons will require expanded evaluation, statistical uncertainty estimates and appropriate statistical tests.

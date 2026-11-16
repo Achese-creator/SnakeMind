@@ -49,14 +49,18 @@ SnakeMind is one shared research environment with interchangeable agents, not a 
 - [x] Add environment unit tests.
 - [x] Run Gymnasium environment validation.
 - [x] Add a configurable episode step limit.
-- [x] Add a rendering/visualization interface.
+- [x] Add an RGB-array rendering interface.
+- [ ] Build a separate interactive graphical viewer.
 
 ### Milestone 2 — Baseline agents
-- [ ] Define a common agent interface.
-- [ ] Implement random agent.
-- [ ] Implement Hamiltonian-cycle agent.
-- [ ] Verify both agents against the same environment.
-- [ ] Establish baseline evaluation metrics.
+- [x] Define a common agent interface.
+- [x] Implement random agent.
+- [x] Implement Hamiltonian-cycle agent.
+- [x] Verify both agents against the same environment.
+- [x] Establish baseline evaluation metrics.
+- [x] Implement a shared multi-seed evaluation runner.
+- [x] Export per-episode evaluation results to CSV.
+- [x] Verify reproducibility of evaluation runs.
 
 ### Milestone 3 — Tabular reinforcement learning
 - [ ] Design a compact state representation.
@@ -96,11 +100,12 @@ SnakeMind is one shared research environment with interchangeable agents, not a 
 - [ ] Evaluate multi-agent behavior and limitations.
 
 ### Milestone 9 — Rigorous evaluation
-- [ ] Evaluate across multiple random seeds.
+- [ ] Expand evaluation across a larger number of random seeds.
 - [ ] Use consistent board sizes and game rules.
 - [ ] Separate training and held-out evaluation.
 - [ ] Record episode return, score, survival, length and efficiency.
-- [ ] Report means and variability.
+- [ ] Report means, variability and confidence intervals.
+- [ ] Perform appropriate statistical comparisons.
 - [ ] Compare agents under identical conditions.
 - [ ] Preserve experiment configurations and results.
 
@@ -120,6 +125,8 @@ SnakeMind is one shared research environment with interchangeable agents, not a 
 - Preserve configurations, checkpoints and experiment results.
 - Distinguish training performance from evaluation performance.
 - Report limitations and failed experiments honestly.
+- Treat small pilot evaluations as preliminary evidence.
+- Use confidence intervals and appropriate statistical comparisons for final research claims.
 
 ## 6. Technology direction
 
@@ -155,7 +162,7 @@ Cloud GPU availability is not guaranteed. Training must support checkpoints, res
 
 These are explicitly retained for review and implementation:
 - Maximum episode length and truncation semantics.
-- Rendering and headless training support.
+- Interactive graphical viewer beyond RGB-array rendering.
 - Observation representation comparisons.
 - Reward design and reward-shaping risks.
 - Action masking and safety-filter design.
@@ -172,10 +179,23 @@ These are explicitly retained for review and implementation:
 - [x] Initial dependencies installed: Gymnasium, NumPy and pytest.
 - [x] Dependency versions verified.
 - [x] Environment implementation verified.
-- [x] Milestone 1 initial tests passed.
+- [x] Milestone 1 tests passed.
+- [x] Milestone 2 baseline agents implemented and tested.
+- [x] Baseline evaluation runner implemented and tested.
+- [x] Initial baseline results generated and saved.
 
-Update this section as work is completed. A task is only complete when its implementation and relevant verification are done.
+**Current verified test suite:** 30 tests passed.
 
+**Current pilot evaluation:** 10 seeds (100–109), 10×10 board, maximum 10,000 steps per episode.
+
+| Metric | RandomAgent | HamiltonianAgent |
+|---|---:|---:|
+| Mean score | 0 | 97 |
+| Mean survival steps | 16.5 | 2,419.6 |
+| Mean final length | 3 | 100 |
+| Board completion rate | 0% | 100% |
+
+These are initial pilot results, not final statistical conclusions.
 
 ## 10. Implementation notes — November 2026
 
@@ -187,6 +207,14 @@ Update this section as work is completed. A task is only complete when its imple
 - Seeded food spawning implemented.
 - Collision, board completion and time-limit handling implemented.
 - RGB-array rendering implemented.
-- Initial unit tests and Gymnasium validation passed.
+- Common agent interface implemented.
+- Random baseline implemented.
+- Hamiltonian-cycle baseline implemented for supported even square boards.
+- Evaluation metrics include score, survival steps, episode return, final length and termination reason.
+- Per-episode CSV export implemented.
+- Initial 30-test suite passed.
 - Interactive graphical viewer remains outstanding.
-- Full-board completion and full rendering validation are being verified.
+- Larger-scale statistical evaluation remains outstanding.
+- Learned reinforcement learning agents have not yet been implemented.
+
+Update this section as work is completed. A task is only complete when its implementation and relevant verification are done.

@@ -1,0 +1,11 @@
+seed,score,survival_steps,episode_return,final_length,terminated,truncated,termination_reason
+100,97,2650,1043.500000000016,100,True,False,board_filled
+101,97,2203,1047.9700000000144,100,True,False,board_filled
+102,97,2240,1047.600000000014,100,True,False,board_filled
+103,97,2267,1047.3300000000133,100,True,False,board_filled
+104,97,2421,1045.7900000000145,100,True,False,board_filled
+105,97,2317,1046.830000000016,100,True,False,board_filled
+106,97,2671,1043.290000000017,100,True,False,board_filled
+107,97,2338,1046.6200000000165,100,True,False,board_filled
+108,97,2561,1044.390000000015,100,True,False,board_filled
+109,97,2528,1044.7200000000157,100,True,False,board_filled
