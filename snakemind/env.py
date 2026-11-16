@@ -228,6 +228,7 @@ class SnakeEnv(gym.Env):
             "steps": self.steps,
             "food": self.food,
             "head": self.body[0] if self.body else None,
+            "tail": self.body[-1] if self.body else None,
             "direction": self.direction,
             "termination_reason": self.termination_reason,
         }

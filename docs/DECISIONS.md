@@ -88,3 +88,25 @@ Results are saved as CSV files.
 Reason: make baseline experiments reproducible and enable future comparisons.
 
 The initial ten-seed experiment is a pilot. Final research comparisons will require expanded evaluation, statistical uncertainty estimates and appropriate statistical tests.
+
+## ADR-011: Provisional Q-Learning Exploration Schedule
+
+**Status:** Accepted provisionally
+
+**Decision:** Use `epsilon_decay=0.999` as the current working exploration
+schedule for tabular Q-Learning experiments.
+
+**Evidence:** Three 5,000-episode experiments compared decay values of
+0.995, 0.999 and 0.9995. Their 10-episode evaluation mean scores were
+14.8, 16.0 and 15.8 respectively.
+
+**Rationale:** The 0.999 schedule produced the strongest observed evaluation
+result and a gradual training improvement. The 0.9995 schedule retained
+more exploration but did not demonstrate a corresponding evaluation gain.
+
+**Limitations:** Only 10 evaluation seeds were used. Differences have not
+been established as statistically significant. This decision is a working
+experimental configuration, not a claim of optimality.
+
+**Revisit when:** Evaluation is expanded to more seeds, confidence intervals
+are calculated, or the state representation and training methodology change.

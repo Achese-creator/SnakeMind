@@ -218,3 +218,31 @@ These are initial pilot results, not final statistical conclusions.
 - Learned reinforcement learning agents have not yet been implemented.
 
 Update this section as work is completed. A task is only complete when its implementation and relevant verification are done.
+
+## Tabular Q-Learning: Exploration Schedule Experiments
+
+Three controlled experiments compared epsilon decay schedules over 5,000
+training episodes. All other training and evaluation settings were held
+constant.
+
+| Experiment | Epsilon decay | Final epsilon | Evaluation mean score |
+|---|---:|---:|---:|
+| A | 0.995 | 0.05 | 14.8 |
+| B | 0.999 | 0.05 | 16.0 |
+| C | 0.9995 | 0.0821 | 15.8 |
+
+Evaluation used 10 seeds. These are pilot results, not statistically
+conclusive comparisons.
+
+Experiment B is the current working configuration. It achieved the highest
+observed evaluation mean score and showed gradual learning before reaching
+a plateau. Experiment C retained more exploration throughout training and
+had not reached the same training performance by episode 5,000.
+
+The current 10-feature state representation may cause state aliasing:
+different physical snake configurations can map to the same encoded state.
+This is a known limitation of the current abstraction and a candidate
+explanation for the learning plateau, not yet a proven cause.
+
+Next investigation: design and evaluate a richer state representation while
+holding the selected exploration schedule and other hyperparameters fixed.
